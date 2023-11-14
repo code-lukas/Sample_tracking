@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from backend.gui.views import SampleTrackingView, AllSamplesView
+from backend.gui.views import SampleTrackingView, AllSamplesView, some_streaming_csv_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", SampleTrackingView.as_view(), name="config"),
-    path("samples/", AllSamplesView.as_view(), name="all_samples")
+    path("samples/", AllSamplesView.as_view(), name="all_samples"),
+    path("csv/", some_streaming_csv_view, name="csv"),
 ]
