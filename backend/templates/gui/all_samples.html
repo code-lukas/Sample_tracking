@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      {% for key, _ in samples.0 %}
+        <th>{{ key }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in samples %}
+      <tr>
+        {% for _, value in item %}
+          <td>{{ value }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

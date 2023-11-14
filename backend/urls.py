@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from backend.gui.views import SampleTrackingView
+from backend.gui.views import SampleTrackingView, AllSamplesView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", SampleTrackingView.as_view(), name="config"),
+    path("samples/", AllSamplesView.as_view(), name="all_samples")
 ]

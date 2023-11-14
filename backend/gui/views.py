@@ -25,8 +25,22 @@ class SampleTrackingView(TemplateView):
         form: SampleForm = SampleForm(request.POST)
 
         if form.is_valid():
+            form.save()
             messages.success(request, 'Submission successful!')
         else:
             messages.error(request, 'Submission unsuccessful!')
         return HttpResponseRedirect(request.path_info)
 
+
+class AllSamplesView(TemplateView):
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        template_name = 'gui/all_samples.html'
+        samples = HistopathologicalSample.objects.all()
+        fields_and_values_list = [
+            [(field.name, getattr(instance, field.name)) for field in instance._meta.fields]
+            for instance in samples
+        ]
+        context = {
+            'samples': fields_and_values_list,
+        }
+        return render(request, template_name, context=context)
